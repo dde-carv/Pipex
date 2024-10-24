@@ -6,10 +6,17 @@
 /*   By: dde-carv <dde-carv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 11:18:04 by dde-carv          #+#    #+#             */
-/*   Updated: 2024/10/24 11:38:36 by dde-carv         ###   ########.fr       */
+/*   Updated: 2024/10/24 13:35:25 by dde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/pipex.h"
 
+int	main(int argc, char **argv)
+{
+	int	len;
+	int	len1;
 
+	
+	return (0);
+}
