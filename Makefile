@@ -6,7 +6,7 @@
 #    By: dde-carv <dde-carv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/23 10:20:42 by dde-carv          #+#    #+#              #
-#    Updated: 2024/10/24 11:44:37 by dde-carv         ###   ########.fr        #
+#    Updated: 2024/11/04 14:46:29 by dde-carv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,4 +68,4 @@ fclean:		clean
 
 re:		fclean all
 
-.PHONY:		all bonus clean fclean re
+.PHONY:		bonus clean fclean re
