@@ -6,11 +6,51 @@
 /*   By: dde-carv <dde-carv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 14:53:43 by dde-carv          #+#    #+#             */
-/*   Updated: 2024/11/06 16:57:23 by dde-carv         ###   ########.fr       */
+/*   Updated: 2024/11/07 11:25:14 by dde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/pipex.h"
+
+void	free_all_cmds(char **cmds)
+{
+	int	i;
+
+	i = 0;
+	while (cmds[i])
+	{
+		free(cmds[i]);
+		i++;
+	}
+	free(cmds);
+}
+
+static void	ft_free_rest(t_cmd **input, char **paths)
+{
+	int		i;
+	t_cmd	*tmp;
+
+	while (*input)
+	{
+		i = 0;
+		tmp = *input;
+		*input = (*input)->next;
+		while (tmp->av[i])
+		{
+			free(tmp->av[i]);
+			i++;
+		}
+		free(tmp->av);
+		free(tmp->path);
+		tmp->next = NULL;
+		tmp->prev = NULL;
+		free(tmp);
+	}
+	i = -1;
+	while (paths[++i])
+		free(paths[i]);
+	free(paths);
+}
 
 static void	ft_exitcmd(t_cmd *input)
 {

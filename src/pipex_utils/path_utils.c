@@ -6,7 +6,7 @@
 /*   By: dde-carv <dde-carv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 11:54:40 by dde-carv          #+#    #+#             */
-/*   Updated: 2024/11/06 16:17:01 by dde-carv         ###   ########.fr       */
+/*   Updated: 2024/11/07 11:32:25 by dde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,6 @@ char	**get_path(char **envp)
 		}
 		i++;
 	}
-	exit_pipex(...);
+	exit_pipex(NULL, 4);
 	return (NULL);
 }
