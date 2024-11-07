@@ -6,14 +6,14 @@
 #    By: dde-carv <dde-carv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/23 10:20:42 by dde-carv          #+#    #+#              #
-#    Updated: 2024/11/07 14:20:59 by dde-carv         ###   ########.fr        #
+#    Updated: 2024/11/07 16:22:20 by dde-carv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	pipex
 
 LIBFT	=	./libft/libft.a
-INC	=	inc/
+INC		=	inc/
 SRC_DIR	=	src/
 OBJ_DIR	=	obj/
 SRCB_DIR	=	src_b/
@@ -23,7 +23,7 @@ CC	=	@cc
 CFLAGS	=	-Wall -Werror -Wextra -g -I
 RM	=	@rm -f
 
-PPX_UTILS_DIR	=	$(SRC_DIR)pipex_utils/pipex_utils.c \
+PPX_UTILS_DIR	=	$(SRC_DIR)pipex_utils/path_utils.c \
 				$(SRC_DIR)pipex_utils/exit.c \
 				$(SRC_DIR)pipex_utils/family.c \
 

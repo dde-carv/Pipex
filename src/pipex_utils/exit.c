@@ -6,7 +6,7 @@
 /*   By: dde-carv <dde-carv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 14:53:43 by dde-carv          #+#    #+#             */
-/*   Updated: 2024/11/07 11:25:14 by dde-carv         ###   ########.fr       */
+/*   Updated: 2024/11/07 15:09:15 by dde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ static void	ft_free_rest(t_cmd **input, char **paths)
 	while (*input)
 	{
 		i = 0;
-		tmp = *input;
-		*input = (*input)->next;
+		tmp = (*input);
+		(*input) = (*input)->next;
 		while (tmp->av[i])
 		{
 			free(tmp->av[i]);
@@ -49,7 +49,8 @@ static void	ft_free_rest(t_cmd **input, char **paths)
 	i = -1;
 	while (paths[++i])
 		free(paths[i]);
-	free(paths);
+	if(paths)
+		free(paths);
 }
 
 static void	ft_exitcmd(t_cmd *input)

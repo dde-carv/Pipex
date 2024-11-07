@@ -6,7 +6,7 @@
 /*   By: dde-carv <dde-carv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 10:15:04 by dde-carv          #+#    #+#             */
-/*   Updated: 2024/11/07 11:36:10 by dde-carv         ###   ########.fr       */
+/*   Updated: 2024/11/07 17:09:01 by dde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,33 +43,37 @@ static int	check_empty(int argc, char **argv)
 	return (1);
 }
 
-static void	set_input(int argc, char **argv, char **paths, t_cmd *input)
+static t_cmd	*set_input(int argc, char **argv, char **paths)
 {
 	int	i;
+	t_cmd	*input;
 
 	i = 2;
 	input = ft_newcmd(argv[i], check_path(argv[i], paths));
+	i++;
 	while (argv[i] && i < (argc - 1))
 	{
 		ft_addcmd(&input, ft_newcmd(argv[i], check_path(argv[i], paths)));
 		i++;
 	}
-	return ;
+	return (input);
 }
 
-static void	init_pipex(int argc, char **argv, char **envp, t_cmd *input)
+static t_cmd	*init_pipex(int argc, char **argv, char **envp)
 {
+	t_cmd	*input;
+
 	data()->flag = 0;
 	data()->fd_in = open(argv[1], O_RDONLY);
-	if (data()->fd_in < 0)
+	if (data()->fd_in == -1)
 		exit_pipex(NULL, 2);
 	data()->fd_out = open(argv[argc - 1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
-	if (data()->fd_out < 0)
+	if (data()->fd_out == -1)
 		exit_pipex(NULL, 3);
 	data()->paths = get_path(envp);
-	set_input(argc, argv, data()->paths, input);
+	input = set_input(argc, argv, data()->paths);
 	data()->first = input;
-	return ;
+	return (input);
 }
 
 int	main(int argc, char **argv, char **envp)
@@ -80,10 +84,13 @@ int	main(int argc, char **argv, char **envp)
 	{
 		if (!check_empty(argc, argv))
 			exit_pipex(NULL, 1);
-		init_pipex(argc, argv, envp, &input);
-		father_son(&input, envp);
+		input = init_pipex(argc, argv, envp);
+		father_son(input, envp);
 	}
 	else
+	{
 		ft_printf("Bad syntax:\n./pipex file1 \"cmd1\" \"cmd2\" file2\n");
+		return (1);
+	}
 	return (0);
 }

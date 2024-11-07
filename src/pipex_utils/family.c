@@ -6,7 +6,7 @@
 /*   By: dde-carv <dde-carv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 11:50:58 by dde-carv          #+#    #+#             */
-/*   Updated: 2024/11/07 14:12:30 by dde-carv         ###   ########.fr       */
+/*   Updated: 2024/11/07 15:30:18 by dde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	son(t_cmd *input, char **envp)
 
 static void	after_father(t_cmd *input)
 {
-	close(input->prev->fd[1]);
+	close(input->fd[1]);
 	if (!input->next)
 		close(input->fd[0]);
 }
@@ -52,9 +52,10 @@ void	father_son(t_cmd *input, char **envp)
 		prep_father(input);
 		data()->pid = fork();
 		if (data()->pid == -1)
-			ft_printf("Error: Fork failed\n");
+			exit_pipex(input, 5);
 		if (data()->pid == 0)
 			son(input, envp);
+		after_father(input);
 		input = input->next;
 	}
 	input = data()->first;

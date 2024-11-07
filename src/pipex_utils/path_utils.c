@@ -6,7 +6,7 @@
 /*   By: dde-carv <dde-carv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 11:54:40 by dde-carv          #+#    #+#             */
-/*   Updated: 2024/11/07 11:32:25 by dde-carv         ###   ########.fr       */
+/*   Updated: 2024/11/07 17:06:29 by dde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ char	**get_path(char **envp)
 	char	**paths;
 
 	i = 0;
+	paths = NULL;
 	while (envp[i])
 	{
 		if (ft_strncmp(envp[i], "PATH=", 5) == 0)
@@ -99,5 +100,5 @@ char	**get_path(char **envp)
 		i++;
 	}
 	exit_pipex(NULL, 4);
-	return (NULL);
+	return (paths);
 }
