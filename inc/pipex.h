@@ -6,7 +6,7 @@
 /*   By: dde-carv <dde-carv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 11:18:46 by dde-carv          #+#    #+#             */
-/*   Updated: 2024/11/05 14:39:24 by dde-carv         ###   ########.fr       */
+/*   Updated: 2024/11/06 16:24:26 by dde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stdio.h>
 # include <sys/wait.h>
 # include <fcntl.h>
+# include <unistd.h>
 
 typedef struct s_cmd
 {
@@ -36,11 +37,14 @@ typedef struct s_pipe
 	int			flag;
 	int			fd_in;
 	int			fd_out;
-	char		**path;
+	char		**paths;
 	t_cmd		*first;
 }		t_pipe;
 
-
-
+t_pipe	*data(void);
+t_cmd	*ft_newcmd(char *cmd, char *path);
+void	ft_addcmd(t_cmd **input, t_cmd *new);
+char	**get_path(char **envp);
+char	*check_path(char *cmd, char **paths);
 
 #endif
