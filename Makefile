@@ -6,7 +6,7 @@
 #    By: dde-carv <dde-carv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/23 10:20:42 by dde-carv          #+#    #+#              #
-#    Updated: 2024/11/04 14:46:29 by dde-carv         ###   ########.fr        #
+#    Updated: 2024/11/07 14:20:59 by dde-carv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,13 +23,15 @@ CC	=	@cc
 CFLAGS	=	-Wall -Werror -Wextra -g -I
 RM	=	@rm -f
 
-	=	$(SRC_DIR)
+PPX_UTILS_DIR	=	$(SRC_DIR)pipex_utils/pipex_utils.c \
+				$(SRC_DIR)pipex_utils/exit.c \
+				$(SRC_DIR)pipex_utils/family.c \
 
 MAIN_PPX_DIR	=	$(SRC_DIR)main_ppx/main.c
 
 BONUS_DIR		=	$(SRCB_DIR)
 
-SRCS	=	$()
+SRCS	=	$(PPX_UTILS_DIR) $(MAIN_PPX_DIR)
 SRCS_B	=	$()
 
 OBJS	=	$(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$(SRCS))

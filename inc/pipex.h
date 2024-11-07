@@ -6,7 +6,7 @@
 /*   By: dde-carv <dde-carv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 11:18:46 by dde-carv          #+#    #+#             */
-/*   Updated: 2024/11/06 16:24:26 by dde-carv         ###   ########.fr       */
+/*   Updated: 2024/11/07 14:15:43 by dde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,12 @@ typedef struct s_pipe
 }		t_pipe;
 
 t_pipe	*data(void);
-t_cmd	*ft_newcmd(char *cmd, char *path);
+void	free_all_cmds(char **cmds);
+void	exit_pipex(t_cmd *input, int error);
+void	father_son(t_cmd *input, char **envp);
 void	ft_addcmd(t_cmd **input, t_cmd *new);
-char	**get_path(char **envp);
+t_cmd	*ft_newcmd(char *cmd, char *path);
 char	*check_path(char *cmd, char **paths);
+char	**get_path(char **envp);
 
 #endif
