@@ -6,7 +6,7 @@
 /*   By: dde-carv <dde-carv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 11:18:46 by dde-carv          #+#    #+#             */
-/*   Updated: 2024/11/07 14:15:43 by dde-carv         ###   ########.fr       */
+/*   Updated: 2024/11/09 15:12:09 by dde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,6 @@ void	ft_addcmd(t_cmd **input, t_cmd *new);
 t_cmd	*ft_newcmd(char *cmd, char *path);
 char	*check_path(char *cmd, char **paths);
 char	**get_path(char **envp);
+void	here_doc_main(int argc, char **argv);
 
 #endif

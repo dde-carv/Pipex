@@ -6,7 +6,7 @@
 /*   By: dde-carv <dde-carv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 14:53:43 by dde-carv          #+#    #+#             */
-/*   Updated: 2024/11/07 15:09:15 by dde-carv         ###   ########.fr       */
+/*   Updated: 2024/11/09 12:28:08 by dde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ static void	ft_exitcmd(t_cmd *input)
 
 void	exit_pipex(t_cmd *input, int error)
 {
+	if (data()->flag == 42)
+		unlink(".temp");
 	if (error != 0)
 	{
 		if (error == 1)
@@ -85,6 +87,8 @@ void	exit_pipex(t_cmd *input, int error)
 			ft_printf("Error:\nCan't fork process.\n");
 		else if (error == 6)
 			ft_exitcmd(input);
+		else if (error == 7)
+			ft_printf("Error:\nCan't run here_doc.\n");
 		exit(1);
 	}
 	input = data()->first;
