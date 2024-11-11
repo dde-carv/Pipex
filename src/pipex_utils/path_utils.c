@@ -6,7 +6,7 @@
 /*   By: dde-carv <dde-carv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 11:54:40 by dde-carv          #+#    #+#             */
-/*   Updated: 2024/11/07 17:06:29 by dde-carv         ###   ########.fr       */
+/*   Updated: 2024/11/11 12:11:17 by dde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	ft_addcmd(t_cmd **input, t_cmd *new)
 	}
 }
 
-t_cmd	*ft_newcmd(char *cmd, char *path)
+t_cmd	* ft_newcmd(char *cmd, char *path)
 {
 	t_cmd	*new;
 
@@ -60,7 +60,7 @@ char	*check_path(char *cmd, char **paths)
 	char	*main_cmd;
 	char	*path;
 	char	*path_cmd;
-	char 	**all_cmds;
+	char	**all_cmds;
 
 	all_cmds = ft_split(cmd, ' ');
 	main_cmd = ft_strdup(all_cmds[0]);

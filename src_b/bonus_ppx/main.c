@@ -6,7 +6,7 @@
 /*   By: dde-carv <dde-carv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 13:05:09 by dde-carv          #+#    #+#             */
-/*   Updated: 2024/11/09 10:46:02 by dde-carv         ###   ########.fr       */
+/*   Updated: 2024/11/11 12:06:34 by dde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static int	check_empty(int argc, char **argv)
 
 static t_cmd	*set_input(int argc, char **argv, char **paths)
 {
-	int	i;
+	int		i;
 	t_cmd	*input;
 
 	if (!ft_strncmp(argv[1], "here_doc", 9))
@@ -73,7 +73,8 @@ static t_cmd	*init_pipex(int argc, char **argv, char **envp)
 		data()->fd_in = open(argv[1], O_RDONLY);
 		if (data()->fd_in == -1)
 			exit_pipex(NULL, 2);
-		data()->fd_out = open(argv[argc - 1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
+		data()->fd_out = open(argv[argc - 1], \
+			O_WRONLY | O_CREAT | O_TRUNC, 0644);
 		if (data()->fd_out == -1)
 			exit_pipex(NULL, 3);
 	}

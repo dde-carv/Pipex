@@ -6,7 +6,7 @@
 /*   By: dde-carv <dde-carv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 10:15:04 by dde-carv          #+#    #+#             */
-/*   Updated: 2024/11/07 17:09:01 by dde-carv         ###   ########.fr       */
+/*   Updated: 2024/11/11 12:07:36 by dde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static int	check_empty(int argc, char **argv)
 
 static t_cmd	*set_input(int argc, char **argv, char **paths)
 {
-	int	i;
+	int		i;
 	t_cmd	*input;
 
 	i = 2;
@@ -84,6 +84,8 @@ int	main(int argc, char **argv, char **envp)
 	{
 		if (!check_empty(argc, argv))
 			exit_pipex(NULL, 1);
+		if (!envp)
+			exit_pipex(NULL, 8);
 		input = init_pipex(argc, argv, envp);
 		father_son(input, envp);
 	}
