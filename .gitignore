@@ -6,5 +6,6 @@ obj/
 *.swp
 .dist/
 pipex
+pipex_bonus
 infile
 outfile

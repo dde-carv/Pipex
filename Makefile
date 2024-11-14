@@ -6,11 +6,12 @@
 #    By: dde-carv <dde-carv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/23 10:20:42 by dde-carv          #+#    #+#              #
-#    Updated: 2024/11/09 15:15:02 by dde-carv         ###   ########.fr        #
+#    Updated: 2024/11/14 15:59:26 by dde-carv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	pipex
+NAME_B	=	pipex_bonus
 
 LIBFT	=	./libft/libft.a
 INC		=	inc/
@@ -38,6 +39,16 @@ SRCS_B	=	$(PPX_UTILS_DIR) $(BONUS_DIR)
 OBJS	=	$(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$(SRCS))
 OBJS_B	=	$(patsubst $(SRCB_DIR)%/*.c,$(OBJB_DIR)%/*.o,$(SRCS_B))
 
+all:	$(NAME)
+
+$(NAME):	$(OBJS) $(LIBFT)
+		@echo "Make .o and exacuteble."
+		@$(CC) $(CFLAGS) $(INC) $(OBJS) $(LIBFT) -o $(NAME)
+
+$(NAME_B):	$(OBJS_B) $(LIBFT)
+		@echo "Make .o and exacuteble."
+		@$(CC) $(CFLAGS) $(INC) $(OBJS_B) $(LIBFT) -o $(NAME_B)
+
 $(LIBFT):
 		@make -s -C ./libft
 
@@ -45,13 +56,8 @@ $(OBJ_DIR)%.o:	$(SRC_DIR)%.c
 		@mkdir -p $(@D)
 		@$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
-all:		$(OBJS) $(LIBFT)
-		@echo "Make .o and exacuteble."
-		@$(CC) $(CFLAGS) $(INC) $(OBJS) $(LIBFT) -o $(NAME)
+bonus:		$(NAME_B)
 
-bonus:		$(OBJS_B) $(LIBFT)
-		@echo "Make .o and exacuteble."
-		@$(CC) $(CFLAGS) $(INC) $(OBJS_B) $(LIBFT) -o $(NAME)
 clean:
 		$(RM) -r $(OBJ_DIR)
 		@make -s clean -C ./libft
