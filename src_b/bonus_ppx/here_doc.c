@@ -6,7 +6,7 @@
 /*   By: dde-carv <dde-carv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 10:52:21 by dde-carv          #+#    #+#             */
-/*   Updated: 2024/11/14 17:23:28 by dde-carv         ###   ########.fr       */
+/*   Updated: 2024/11/15 14:20:59 by dde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	here_doc(char **argv)
 
 	fd_in = open(".temp", O_WRONLY | O_CREAT, 0644);
 	if (fd_in == -1)
-		exit_pipex(NULL, 7);
+		exit_pipex(NULL, 1);
 	ft_printf("> ");
 	line = get_next_line(0);
 	while (1)
@@ -43,5 +43,7 @@ void	here_doc_main(int argc, char **argv)
 	data()->flag = 42;
 	data()->fd_out = open(argv[argc - 1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (data()->fd_out == -1)
-		exit_pipex(NULL, 3);
+		exit_pipex(NULL, 1);
+	if (data()->fd_in != -1)
+		exit_pipex(NULL, 1);
 }

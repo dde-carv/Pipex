@@ -6,7 +6,7 @@
 /*   By: dde-carv <dde-carv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 11:50:58 by dde-carv          #+#    #+#             */
-/*   Updated: 2024/11/07 15:30:18 by dde-carv         ###   ########.fr       */
+/*   Updated: 2024/11/15 16:35:58 by dde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	prep_father(t_cmd *input)
 
 static void	son(t_cmd *input, char **envp)
 {
-	if (!input->next)
+	if (data()->fd_out != -1)
 	{
 		dup2(data()->fd_out, 1);
 		close(data()->fd_out);
@@ -34,8 +34,9 @@ static void	son(t_cmd *input, char **envp)
 		dup2(input->fd[1], 1);
 	close(input->fd[0]);
 	close(input->fd[1]);
+	close(data()->fd_in);
 	if (execve(input->path, input->av, envp) == -1)
-		exit_pipex(input, 6);
+		exit_pipex(input, 2);
 }
 
 static void	after_father(t_cmd *input)
@@ -52,7 +53,7 @@ void	father_son(t_cmd *input, char **envp)
 		prep_father(input);
 		data()->pid = fork();
 		if (data()->pid == -1)
-			exit_pipex(input, 5);
+			exit_pipex(input, 2);
 		if (data()->pid == 0)
 			son(input, envp);
 		after_father(input);
@@ -64,5 +65,9 @@ void	father_son(t_cmd *input, char **envp)
 		waitpid(-1, NULL, 0);
 		input = input->next;
 	}
+	if (data()->fd_in != -1)
+		close(data()->fd_in);
+	if (data()->fd_out != -1)
+		close(data()->fd_out);
 	exit_pipex(NULL, 0);
 }
