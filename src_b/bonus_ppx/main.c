@@ -6,7 +6,7 @@
 /*   By: dde-carv <dde-carv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 13:05:09 by dde-carv          #+#    #+#             */
-/*   Updated: 2024/11/11 12:06:34 by dde-carv         ###   ########.fr       */
+/*   Updated: 2024/11/14 17:19:05 by dde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int	main(int argc, char **argv, char **envp)
 {
 	t_cmd	*input;
 
-	if (argc >= 5)
+	if (argc > 5)
 	{
 		if (!check_empty(argc, argv))
 			exit_pipex(NULL, 1);
@@ -98,7 +98,7 @@ int	main(int argc, char **argv, char **envp)
 	else
 	{
 		ft_printf("Bad syntax:\n./pipex file1 cmd1 cmd2 cmd3 ... file2\n\
-			or\n./pipex here_doc LIMITER cmd1 cmd2 file");
+			or\n./pipex here_doc LIMITER cmd1 cmd2 file\n");
 		return (1);
 	}
 	return (0);
