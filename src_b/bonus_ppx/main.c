@@ -6,7 +6,7 @@
 /*   By: dde-carv <dde-carv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 13:05:09 by dde-carv          #+#    #+#             */
-/*   Updated: 2024/11/15 12:25:46 by dde-carv         ###   ########.fr       */
+/*   Updated: 2024/11/16 23:10:37 by dde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,16 @@ static t_cmd	*set_input(int argc, char **argv, char **paths)
 {
 	int		i;
 	t_cmd	*input;
+	int		is_last;
 
-	if (!ft_strncmp(argv[1], "here_doc", 9))
-		i = 3;
-	else
-		i = 2;
-	input = ft_newcmd(argv[i], check_path(argv[i], paths));
+	i = 2;
+	is_last = (argc == 4); // Check if there is only one command
+	input = ft_newcmd(argv[i], check_path(argv[i], paths), is_last);
 	i++;
 	while (argv[i] && i < (argc - 1))
 	{
-		ft_addcmd(&input, ft_newcmd(argv[i], check_path(argv[i], paths)));
+		is_last = (i == argc - 2); // Check if the current command is the last one
+		ft_addcmd(&input, ft_newcmd(argv[i], check_path(argv[i], paths), is_last));
 		i++;
 	}
 	return (input);
@@ -88,7 +88,9 @@ int	main(int argc, char **argv, char **envp)
 {
 	t_cmd	*input;
 
-	if (argc > 5)
+	if (envp[0] == NULL)
+		exit_pipex(NULL, 1);
+	if (argc >= 5 || (argc > 5 && !ft_strncmp(argv[1], "here_doc", 9)))
 	{
 		if (!check_empty(argc, argv))
 			exit_pipex(NULL, 1);

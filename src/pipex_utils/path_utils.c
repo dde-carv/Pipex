@@ -6,7 +6,7 @@
 /*   By: dde-carv <dde-carv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 11:54:40 by dde-carv          #+#    #+#             */
-/*   Updated: 2024/11/15 12:26:31 by dde-carv         ###   ########.fr       */
+/*   Updated: 2024/11/16 22:37:36 by dde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	ft_addcmd(t_cmd **input, t_cmd *new)
 	}
 }
 
-t_cmd	* ft_newcmd(char *cmd, char *path)
+t_cmd	*ft_newcmd(char *cmd, char *path, int is_last)
 {
 	t_cmd	*new;
 
@@ -46,8 +46,20 @@ t_cmd	* ft_newcmd(char *cmd, char *path)
 		return (NULL);
 	new->av = ft_split(cmd, ' ');
 	new->cmd = new->av[0];
-	if (pipe(new->fd) == -1)
-		ft_printf("Error: Pipe creation failed\n");
+	if (!is_last)
+	{
+		if (pipe(new->fd) == -1)
+		{
+			ft_printf("Error: Pipe creation failed\n");
+			free(new);
+			return (NULL);
+		}
+	}
+	else
+	{
+		new->fd[0] = -1;
+		new->fd[1] = -1;
+	}
 	new->path = path;
 	new->next = NULL;
 	new->prev = NULL;
