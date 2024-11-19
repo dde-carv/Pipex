@@ -6,7 +6,7 @@
 /*   By: dde-carv <dde-carv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 11:50:58 by dde-carv          #+#    #+#             */
-/*   Updated: 2024/11/16 22:34:09 by dde-carv         ###   ########.fr       */
+/*   Updated: 2024/11/18 20:33:13 by dde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	prep_father(t_cmd *input)
 
 static void	son(t_cmd *input, char **envp)
 {
-	if (data()->fd_out != -1)
+	if (input->next == NULL)
 	{
 		dup2(data()->fd_out, 1);
 		close(data()->fd_out);
@@ -34,9 +34,11 @@ static void	son(t_cmd *input, char **envp)
 		dup2(input->fd[1], 1);
 	if (input->fd[0] != -1)
 		close(input->fd[0]);
-	if (input->fd[0] != -1)
+	if (input->fd[1] != -1)
 		close(input->fd[1]);
 	close(data()->fd_in);
+	if (input->next)
+		close(data()->fd_out);
 	if (execve(input->path, input->av, envp) == -1)
 		exit_pipex(input, 2);
 }
