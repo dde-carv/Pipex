@@ -6,7 +6,7 @@
 /*   By: dde-carv <dde-carv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 10:52:21 by dde-carv          #+#    #+#             */
-/*   Updated: 2024/11/16 23:25:38 by dde-carv         ###   ########.fr       */
+/*   Updated: 2024/11/19 12:59:03 by dde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ static int	here_doc(char **argv)
 	line = get_next_line(0);
 	while (1)
 	{
-		if (ft_strncmp(line, argv[2], ft_strlen(argv[2])) == 0)
+		if (ft_strncmp(line, argv[2], ft_strlen(argv[2])) == 0 && \
+			(ft_strlen(line) - 1) == ft_strlen(argv[2]))
 			break ;
 		write(fd_in, line, ft_strlen(line));
 		free(line);

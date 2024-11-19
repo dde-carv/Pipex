@@ -6,7 +6,7 @@
 /*   By: dde-carv <dde-carv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 11:50:58 by dde-carv          #+#    #+#             */
-/*   Updated: 2024/11/18 20:33:13 by dde-carv         ###   ########.fr       */
+/*   Updated: 2024/11/19 11:40:34 by dde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ static void	son(t_cmd *input, char **envp)
 	close(data()->fd_in);
 	if (input->next)
 		close(data()->fd_out);
+	if (!input->path)
+		exit_pipex(input, 2);
 	if (execve(input->path, input->av, envp) == -1)
 		exit_pipex(input, 2);
 }
