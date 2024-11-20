@@ -6,7 +6,7 @@
 #    By: dde-carv <dde-carv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/23 10:20:42 by dde-carv          #+#    #+#              #
-#    Updated: 2024/11/14 15:59:26 by dde-carv         ###   ########.fr        #
+#    Updated: 2024/11/20 13:35:22 by dde-carv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,11 +42,11 @@ OBJS_B	=	$(patsubst $(SRCB_DIR)%/*.c,$(OBJB_DIR)%/*.o,$(SRCS_B))
 all:	$(NAME)
 
 $(NAME):	$(OBJS) $(LIBFT)
-		@echo "Make .o and exacuteble."
+		@echo "\33[1;32mMake .o and exacuteble.\033[0m"
 		@$(CC) $(CFLAGS) $(INC) $(OBJS) $(LIBFT) -o $(NAME)
 
 $(NAME_B):	$(OBJS_B) $(LIBFT)
-		@echo "Make .o and exacuteble."
+		@echo "\33[1;32mMake .o and exacuteble.\033[0m"
 		@$(CC) $(CFLAGS) $(INC) $(OBJS_B) $(LIBFT) -o $(NAME_B)
 
 $(LIBFT):
@@ -61,13 +61,13 @@ bonus:		$(NAME_B)
 clean:
 		$(RM) -r $(OBJ_DIR)
 		@make -s clean -C ./libft
-		@echo "Clean .o files."
+		@echo "\33[1;31mClean .o files.\033[0m"
 
 fclean:		clean
 		$(RM) $(NAME)
 		$(RM) $(NAME_B)
 		@make -s fclean -C ./libft
-		@echo "Clean exacuteble/s."
+		@echo "\33[1;31mClean exacuteble/s.\033[0m"
 
 re:		fclean all
 
