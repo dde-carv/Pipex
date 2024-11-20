@@ -6,7 +6,7 @@
 /*   By: dde-carv <dde-carv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 10:15:04 by dde-carv          #+#    #+#             */
-/*   Updated: 2024/11/20 12:06:54 by dde-carv         ###   ########.fr       */
+/*   Updated: 2024/11/20 12:14:00 by dde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ static t_cmd	*set_input(int argc, char **argv, char **paths)
 	while (argv[i] && i < (argc - 1))
 	{
 		is_last = (i == argc - 2);
-		ft_addcmd(&input, ft_newcmd(argv[i], check_path(argv[i], paths), is_last));
+		ft_addcmd(&input, ft_newcmd(argv[i], check_path(argv[i], paths), \
+			is_last));
 		i++;
 	}
 	return (input);
