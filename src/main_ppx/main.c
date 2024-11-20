@@ -6,7 +6,7 @@
 /*   By: dde-carv <dde-carv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 10:15:04 by dde-carv          #+#    #+#             */
-/*   Updated: 2024/11/20 12:14:00 by dde-carv         ###   ########.fr       */
+/*   Updated: 2024/11/20 16:02:47 by dde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,6 @@ int	main(int argc, char **argv, char **envp)
 	if (argc == 5)
 	{
 		if (!check_empty(argc, argv))
-			exit_pipex(NULL, 1);
-		if (!envp)
 			exit_pipex(NULL, 1);
 		input = init_pipex(argc, argv, envp);
 		father_son(input, envp);
