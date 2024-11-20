@@ -6,7 +6,7 @@
 /*   By: dde-carv <dde-carv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 10:15:04 by dde-carv          #+#    #+#             */
-/*   Updated: 2024/11/16 23:13:43 by dde-carv         ###   ########.fr       */
+/*   Updated: 2024/11/20 12:06:54 by dde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,8 @@ static t_cmd	*init_pipex(int argc, char **argv, char **envp)
 	data()->fd_in = open(argv[1], O_RDONLY);
 	if (data()->fd_in == -1)
 		exit_pipex(NULL, 1);
-	data()->fd_out = open(argv[argc - 1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	data()->fd_out = open(argv[argc - 1], \
+		O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (data()->fd_out == -1)
 		exit_pipex(NULL, 1);
 	data()->paths = get_path(envp);

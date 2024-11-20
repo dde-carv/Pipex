@@ -6,7 +6,7 @@
 /*   By: dde-carv <dde-carv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 13:05:09 by dde-carv          #+#    #+#             */
-/*   Updated: 2024/11/16 23:10:37 by dde-carv         ###   ########.fr       */
+/*   Updated: 2024/11/20 12:06:11 by dde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,12 @@ static t_cmd	*set_input(int argc, char **argv, char **paths)
 	int		is_last;
 
 	i = 2;
-	is_last = (argc == 4); // Check if there is only one command
+	is_last = (argc == 4);
 	input = ft_newcmd(argv[i], check_path(argv[i], paths), is_last);
 	i++;
 	while (argv[i] && i < (argc - 1))
 	{
-		is_last = (i == argc - 2); // Check if the current command is the last one
+		is_last = (i == argc - 2);
 		ft_addcmd(&input, ft_newcmd(argv[i], check_path(argv[i], paths), is_last));
 		i++;
 	}
